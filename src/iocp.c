@@ -23,7 +23,7 @@ int main(int argc ,char *argv[])
 {
 	//文件路径通过命令行传递进去,语法为bin/cp  file1 file2	【3个参数】
 	if(argc != 3){//语法不对，丢出错误
-		fprintf(stderr,"usage:%S srcfile destfile\n",argv[0]);
+		fprintf(stderr,"usage:%s srcfile destfile\n",argv[0]);
 		exit(1);
 	}
 	int fdin,fdout;
