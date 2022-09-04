@@ -26,6 +26,8 @@ void copy(int fdin,int fdout)
 			fprintf(stderr,"read error!!!:%S\n",strerror(errno));//从屏幕输出出错信息
 		}
 		else{
+				printf("read size: %d\n",nreads);	//打印出要求读取的字节数
+				printf("current: %ld\n",lseek(fdin,0L,SEEK_CUR));//打印出当前的偏移量
 			if(write(fdout,buff,nreads) != nreads){//实际读取的字节数不等于要求读取的字节数，输出error
 			//write出错返回 -1
 				fprintf(stderr,"read error!!!:%S\n",strerror(errno));
