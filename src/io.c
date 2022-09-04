@@ -18,9 +18,14 @@
 
 void copy(int fdin,int fdout)
 {
-	char buff[buff_len];
+	char buff[BUFF_LEN];//缓存数组，BUFF_LEN跟磁盘块有关
+	/*
+	Ubuntu命令：df -k 查看当前的分区情况
+	在Ubuntu中，使用sudo tune2fs -l /dev/sda1，其中Block szie:就是磁盘块大小，通过IO每次读写的单位是一个磁盘块大小
+	如果Block size : 4096,那么最好设置BUFF_LEN 为 4096，跟磁盘块大小保持一次，可提高系统性能【频繁读取文件情况下】。
+	*/
 	ssize_t nreads;//要求读取的字节数
-	while((nreads = read(fdin,buff,buff_len)) != 0)//打开要求read的文件
+	while((nreads = read(fdin,buff,BUFF_LEN)) != 0)//打开要求read的文件
 	{
 		if(nreads < 0){
 			fprintf(stderr,"read error!!!:%S\n",strerror(errno));//从屏幕输出出错信息
