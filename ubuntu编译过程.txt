@@ -1,0 +1,2 @@
+gcc -o obj/io.o -Iinclude -c src/io.c
+【-I指定头文件 相对目录】
